@@ -9,6 +9,8 @@ services:
       POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Добавляем volume для сохранения данных
 
   web:
     container_name: web
@@ -23,3 +25,6 @@ services:
       - db
     env_file:
       - .env
+
+volumes:
+  postgres_data:  # Определяем volume для базы данных
